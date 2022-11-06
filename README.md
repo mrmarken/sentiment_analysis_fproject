@@ -78,8 +78,10 @@ The final training data will contain at least 1000 rows of classified tweets.  T
 * Neutral - 20%
 
 
-### Database  (Dana)
+### Database
+A traditional entity relational diagram (ERD) is a representation of “entities” such as people, places, or dates as they relate to each other usually expressed in several data frames. However, this method of visualization is not typically used in natural language processing. However, ERDs are still used to create conceptual models to map relationships between attributes, objects, and classes based on relationships with words. The structure of the ERD usually follows similar requirements however not all models are the same. Typically, NLP models conduct a series of processing such as segmentation, tokenization, tagging as part-of-speech, chucking, and parsing. Due to the heuristic approach to NLP, the ERD stands as a conceptual model that will likely change through the course of the project. 
 
+![ERD_image](res/images/ERD_v1.png)
 
 ### Proposed ML Models
 
