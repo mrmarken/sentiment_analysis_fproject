@@ -22,8 +22,10 @@ Once the ML model is trained to an acceptable accuracy range, the analysis shoul
 
 ### Data Sources
 
-- Twitter developer API
+-	Twitter API v2
 
+    - Search Tweets endpoint
+      - [Developer Documentation](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent)
 <br>
 
 ### Software Used
@@ -64,7 +66,14 @@ The team agreed to use the following branching strategy:
 
 _More details on [this Google document](https://docs.google.com/document/d/1R5ymXR9j9KWXxl4_9Ug5ayz2Q5TtuGFOi0grzYWA0bA/view)._
 
-### Data Extraction (Kevin)
+### Data Extraction
+
+To retrieve the necessary natural language text data for processing and analysis, our team chose to utilize the Twitter API. The Twitter API is the Application Programming Interface of the company Twitter, a popular microblogging and social networking service platform. The Twitter API has a few available versions and access tiers with various endpoints. We used the Search Tweets endpoint of the Twitter API v2 service on the Essential access tier to procure 100 tweets as a sample text dataset for classification and prediction model prototyping.
+
+Our project protocols rely heavily on the Python programming language, therefore, we chose to use the Tweepy 4.11.0 ([Developer Documentation](https://docs.tweepy.org/en/stable/client.html#search-tweets)) Python library to authenticate and interact with Twitter’s interface endpoints. Through use of Python and Tweepy in a Jupyter Notebook with our project environment kernel, we were able to utilize the Search Tweets query parameter to select the most recent tweets (within the last 7 days) for the hashtags #uvalde and #guncontrol. The query also filtered for tweets that are not retweets, as well as only tweets in the English language. Tweepy’s Paginator was also used to perform pagination through Twitter’s API in order to select 10 tweets before selecting the next page and selecting another 10 tweets. This pagination was repeated until 100 tweets (50 tweets for each hashtag) were fetched and received in the API responses. Once the fetching process was complete, the tweets were aggregated in an array using a Python for loop. After containing the tweets in a list format, the tweets were combined into a Pandas dataframe and then exported as a CSV file for portability and further wrangling of the acquired dataset.
+
+The next phase for our project will feature a refined query for a greater variety of tweets on our subject matter: sentiment about guns and gun control. Our results will also include more fields from the Search Tweets endpoint for additional features to the data including Tweet IDs and ISO formatted Timestamps. Since our project will focus on sentiment regarding gun control near and around the 2022 US midterm elections, we will also make use of endpoint parameters to pull 40,000 tweets for each day for a range of dates around election day, November 8, 2022.
+
 
 ### Data Preprocessing
 
