@@ -22,11 +22,12 @@ Once the ML model is trained to an acceptable accuracy range, the analysis shoul
 
 ### Data Sources
 
--	Twitter API v2
+- Twitter API v2
 
-    - Search Tweets endpoint
-      - [Developer Documentation](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent)
-<br>
+      - Search Tweets endpoint
+        - [Developer Documentation](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent)
+
+  <br>
 
 ### Software Used
 
@@ -74,8 +75,7 @@ Our project protocols rely heavily on the Python programming language, therefore
 
 The next phase for our project will feature a refined query for a greater variety of tweets on our subject matter: sentiment about guns and gun control. Our results will also include more fields from the Search Tweets endpoint for additional features to the data including Tweet IDs and ISO formatted Timestamps. Since our project will focus on sentiment regarding gun control near and around the 2022 US midterm elections, we will also make use of endpoint parameters to pull 40,000 tweets for each day for a range of dates around election day, November 8, 2022.
 
-
-### Data Preprocessing
+### Data Annotation
 
 #### Training the Trainers
 
@@ -100,6 +100,14 @@ A traditional entity relational diagram (ERD) is a representation of “entities
 
 ![ERD_image](res/images/ERD_v1.png)
 
+#### Data preprocessing
+
+Before training the model, we performed various pre-processing steps on the dataset. Firstly, we converted the text into the lowercase for better generalization and then we dealt with removing special characters, single character, multiple spaces.
+
+Subsequently, we defined stopwords and stopwords were cleaned and removed thereby reducing the unnecessary data from the tweets. After that, we also removed the URLs along with removing the numeric numbers from the words as they do not have any significant importance.
+
+At last, we then performed Stemming(reducing the words to their derived stems) and Lemmatization(reducing the derived words to their root form known as lemma) for better results.
+
 ### Proposed ML Models
 
 We are using supervised learning for twitter sentiment analysis to classify tweets as pro-gun, anti-gun or neutral. Since, we have a small dataset of 1000 tweets (400 pro-gun, 400 anti-gun and 200 neutral), to overcome the problem of overfitting we are considering to use the following Machine Learning models:
@@ -114,15 +122,17 @@ We are using supervised learning for twitter sentiment analysis to classify twee
 
 - XGBoost
 
-Division of Training And Testing dataset- 70:30.
-
 ### Training the Model(s)
 
-TBD
+We are using supervised machine learning which is based on labeled dataset and thus the labels are provided to the model during the process. These labeled dataset are trained to get meaningful outputs when encountered during decision making. We will use 700 tweets to train ML model.
 
 ### Testing the Model(s)
 
-TBD
+We have a dataset of 300 tweets to test ML model.
+
+### ML model
+
+With database of only 100 tweets, Balanced Random Forest Classifier performed the best with accuracy score of 57.9 %. But when we have a dataset of 1000 tweets, We want to try various Machine Learning models on the dataset ranging from simple ones to complex models and then try to find out the one which gives the best performance among them using Acuuracy score, confusion matrix.
 
 ### Dataset Analysis
 
