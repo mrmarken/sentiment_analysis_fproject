@@ -7,7 +7,7 @@
 ### Executive Summary
 
 Our team has decided to utilize Machine Learning to conduct a Sentiment Analysis on Gun Control using Natural Language Processing (NLP) and Machine Learning (ML) libraries and tools. Our team has opted to find and review tweets that contain a number of predetermined relevant keywords and focus on the 2022 Midterm Elections timeframe.
-The team has conducted a few team sessions to align on classification criteria on a set of 100 tweets. This will allow us to more closely agree on tweet classification to train our ML models. Once trained and tested, we will decide on the most accurate ML model and proceed to analyze at least 400,000 tweets to understand sentiment on gun-control during pre- and post-election dates. Ultimately, the team will use the metadata to make appropriate data visualization tools and provide summaries and opinions on the data.
+The team initially conducted a few team sessions to align on classification criteria on a set of 100 tweets. This allowe us to more closely agree on classifying 1,000 tweets to train our ML models. Once trained and tested, we will decide on the most accurate ML model and proceed to analyze at least 100,000 tweets to understand sentiment on gun-control in the days leading to the election, on election day and days after the election. Ultimately, the team will use the metadata to make appropriate data visualization tools and provide summaries and opinions on the data.
 
 The data results will be discussed in the "Results" section. A summary section will contain the teams' findings, reporting, considerations and any recommendations for future studies.
 
@@ -46,7 +46,11 @@ Once the ML model is trained to an acceptable accuracy range, the analysis shoul
   - notebook : 6.4.8
   - qtconsole : 5.3.0
   - traitlets : 5.1.1
-- ML Methods: `<TBD>`
+- ML Methods: 
+  - Naive Bayes
+  - Support Vector Machine
+  - Random Forest
+  - Adaptive Boosting
 
 <br><br><br>
 
@@ -54,18 +58,26 @@ Once the ML model is trained to an acceptable accuracy range, the analysis shoul
 
 The following section contains details about the project and how the team derived results from the analysis.
 
+<br>
+
 ### Documentation
 
 The following documentation is captured as part of this repository:
 
-- Group 6 Final Project Proposal
-- Final Project Process Overview
+- [Group 6 Final Project Proposal](https://docs.google.com/document/d/1S8YDuH4BK8O7xqQIlRqUP676FcTqAoM3K-G383fwP4o/view)
+- [Final Project Process Overview](https://docs.google.com/document/d/1R5ymXR9j9KWXxl4_9Ug5ayz2Q5TtuGFOi0grzYWA0bA/view)
+
+<br>
 
 ### Branching
 
 The team agreed to use the following branching strategy:
+* During each segment, each team member creates a new branch with the following syntax:
+  * firstname_segment#
 
 _More details on [this Google document](https://docs.google.com/document/d/1R5ymXR9j9KWXxl4_9Ug5ayz2Q5TtuGFOi0grzYWA0bA/view)._
+
+<br>
 
 ### Data Extraction
 
@@ -134,10 +146,6 @@ We have a dataset of 300 tweets to test ML model.
 
 With database of only 100 tweets, Balanced Random Forest Classifier performed the best with accuracy score of 57.9 %. But when we have a dataset of 1000 tweets, We want to try various Machine Learning models on the dataset ranging from simple ones to complex models and then try to find out the one which gives the best performance among them using Acuuracy score, confusion matrix.
 
-### Dataset Analysis
-
-TBD
-
 <br><br><br>
 
 ## Results
@@ -153,6 +161,35 @@ TBD
 ### Results5
 
 ### Results Summary & Recommendations
+
+<br><br><br>
+
+## Project Analysis
+The Project Analysis portion will include the following:
+* Predict tweet sentiment using ML
+* Overall tweet sentiment percentages around the 2022 Midterm Election
+* Sentiment percentages across US states
+* Sentiment percentages across CA counties
+* Overall Data/Project Analysis
+
+### Predict tweet sentiment using ML
+
+<br>
+
+### Overall tweet sentiment percentages around the 2022 Midterm Election
+
+<br>
+
+### Sentiment percentages across US states
+
+<br>
+
+### Sentiment percentages across CA counties
+
+<br>
+
+### Overall Data/Project Analysis
+
 
 <br><br><br>
 
