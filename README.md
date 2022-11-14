@@ -11,7 +11,7 @@ The team initially conducted a few team sessions to align on classification crit
 
 The data results will be discussed in the "Results" section. A summary section will contain the teams' findings, reporting, considerations and any recommendations for future studies.
 
-_For more information please follow [this link to our Presentation](https://docs.google.com/document/d/1R5ymXR9j9KWXxl4_9Ug5ayz2Q5TtuGFOi0grzYWA0bA/view)._
+_For more information please follow [this link to our Presentation](https://docs.google.com/presentation/d/17xTJZuJfjp9j-S1KO1LkmC7HXK9N8dtZxxIwg6lGEYU/edit?usp=sharing)._
 
 <br>
 
