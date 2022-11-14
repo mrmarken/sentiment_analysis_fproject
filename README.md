@@ -11,6 +11,8 @@ The team initially conducted a few team sessions to align on classification crit
 
 The data results will be discussed in the "Results" section. A summary section will contain the teams' findings, reporting, considerations and any recommendations for future studies.
 
+_For more information please follow [this link to our Presentation](https://docs.google.com/document/d/1R5ymXR9j9KWXxl4_9Ug5ayz2Q5TtuGFOi0grzYWA0bA/view)._
+
 <br>
 
 ### Topic Selection
@@ -22,10 +24,13 @@ Once the ML model is trained to an acceptable accuracy range, the analysis shoul
 
 ### Data Sources
 
-- Twitter API v2
-
-      - Search Tweets endpoint
-        - [Developer Documentation](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent)
+- Twitter API v2 (Prototype Data)
+  - Search Tweets: Recent Tweets endpoint
+    - [Developer Documentation](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent) <br>
+<br>
+- Twitter API v1.1 Premium
+  - Search Tweets: 30-day endpoint
+    - [Developer Documentation](https://developer.twitter.com/en/docs/twitter-api/premium/search-api/api-reference/premium-search#DataEndpoint)
 
   <br>
 
@@ -85,7 +90,7 @@ To retrieve the necessary natural language text data for processing and analysis
 
 Our project protocols rely heavily on the Python programming language, therefore, we chose to use the Tweepy 4.11.0 ([Developer Documentation](https://docs.tweepy.org/en/stable/client.html#search-tweets)) Python library to authenticate and interact with Twitter’s interface endpoints. Through use of Python and Tweepy in a Jupyter Notebook with our project environment kernel, we were able to utilize the Search Tweets query parameter to select the most recent tweets (within the last 7 days) for the hashtags #uvalde and #guncontrol. The query also filtered for tweets that are not retweets, as well as only tweets in the English language. Tweepy’s Paginator was also used to perform pagination through Twitter’s API in order to select 10 tweets before selecting the next page and selecting another 10 tweets. This pagination was repeated until 100 tweets (50 tweets for each hashtag) were fetched and received in the API responses. Once the fetching process was complete, the tweets were aggregated in an array using a Python for loop. After containing the tweets in a list format, the tweets were combined into a Pandas dataframe and then exported as a CSV file for portability and further wrangling of the acquired dataset.
 
-The next phase for our project will feature a refined query for a greater variety of tweets on our subject matter: sentiment about guns and gun control. Our results will also include more fields from the Search Tweets endpoint for additional features to the data including Tweet IDs and ISO formatted Timestamps. Since our project will focus on sentiment regarding gun control near and around the 2022 US midterm elections, we will also make use of endpoint parameters to pull 40,000 tweets for each day for a range of dates around election day, November 8, 2022.
+The next phase for our project  a greater variety of tweets on our subject matter: sentiment about guns and gun control. Our results will also include more fields from the Search Tweets endpoint for additional features to the data including Tweet IDs, Tweet Metrics User IDs, Profile Geo-Data, and UTC Timestamps. We have currently acquired over 8,000 tweets with this feature set, from which we plan to annotate with sentiment classifications for our final model training phase. Since our project will focus on sentiment regarding gun control near and around the 2022 US midterm elections, we will also make use of the premium API 30-day search endpoint parameters to pull 10,000 tweets for each day for a range of dates around election day, November 8, 2022.
 
 ### Data Annotation
 
@@ -108,9 +113,22 @@ The final training data will contain at least 1000 rows of classified tweets. Th
 
 ### Database
 
-A traditional entity relational diagram (ERD) is a representation of “entities” such as people, places, or dates as they relate to each other usually expressed in several data frames. However, this method of visualization is not typically used in natural language processing. However, ERDs are still used to create conceptual models to map relationships between attributes, objects, and classes based on relationships with words. The structure of the ERD usually follows similar requirements however not all models are the same. Typically, NLP models conduct a series of processing such as segmentation, tokenization, tagging as part-of-speech, chucking, and parsing. Due to the heuristic approach to NLP, the ERD stands as a conceptual model that will likely change through the course of the project.
+After extracting our training dataset, which is contains over 8000 tweets and a wider set of features, we decided to design a database schema and host a database on Amazon Web Services' RDS platform with a Postgresql connection. After designing the schema, the data was stored in both raw JSON format and parsed, tabular CSV format in an Amazon S3 bucket. In order to split the dataset into a user-based geographical dataset and a tweets with text and metadata dataset, we first had to retrieve the user's "str_id" from the raw JSON data, which was eventually joined to the rest of the data on the Tweet IDs using Pyspark. Once the data was sufficiently transformed, we selected the features for two separate data tables matching the schema. One table (tweets) contained the tweets text data, along with other metrics, and sentiment classifcation, while the other table (users_geo) contained the user location data. The tables are linked by the user IDs. The database design and entity relationships are further detailed in the diagram below.
 
-![ERD_image](res/images/ERD_v1.png)
+ERD <br>
+<img src="res/images/ERDv2.png" alt="erd" height="300"/>
+
+SQL Schema <br>
+<img src="res/images/db_schema1.png" alt="schema1" height="300"/>
+<img src="res/images/db_schema2.png" alt="schema2" height="300"/>
+
+AWS-RDS Instance <br>
+<img src="res/images/AWS-RDS-DB.png" alt="rds" height="100"/>
+
+Confirmation of Writes to Postgresql DB <br>
+<img src="res/images/users_geo_count.png" alt="writetable1" height="200"/>
+<img src="res/images/tweets_count.png" alt="writetable2" height="200"/>
+
 
 #### Data preprocessing
 
