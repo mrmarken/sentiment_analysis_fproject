@@ -20,7 +20,7 @@ CREATE TABLE tweets (
     likes_count INT,
     retweet_counts INT,
     hyperlink VARCHAR(500),
-    dummy_sentiment VARCHAR(10),
+    sentiment VARCHAR(10),
     UNIQUE(tweet_id)
   
 );
