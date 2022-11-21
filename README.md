@@ -25,10 +25,10 @@ Once the ML model is trained to an acceptable accuracy range, the analysis shoul
 ### Data Sources
 
 - Twitter API v2 (Prototype Data)
-  - Search Tweets: Recent Tweets endpoint
-    - [Developer Documentation](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent) <br>
-<br>
+  - Search Tweets: Recent Tweets endpoint - [Developer Documentation](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent) <br>
+    <br>
 - Twitter API v1.1 Premium
+
   - Search Tweets: 30-day endpoint
     - [Developer Documentation](https://developer.twitter.com/en/docs/twitter-api/premium/search-api/api-reference/premium-search#DataEndpoint)
 
@@ -51,7 +51,7 @@ Once the ML model is trained to an acceptable accuracy range, the analysis shoul
   - notebook : 6.4.8
   - qtconsole : 5.3.0
   - traitlets : 5.1.1
-- ML Methods: 
+- ML Methods:
   - Naive Bayes
   - Support Vector Machine
   - Random Forest
@@ -77,8 +77,9 @@ The following documentation is captured as part of this repository:
 ### Branching
 
 The team agreed to use the following branching strategy:
-* During each segment, each team member creates a new branch with the following syntax:
-  * firstname_segment#
+
+- During each segment, each team member creates a new branch with the following syntax:
+  - firstname_segment#
 
 _More details on [this Google document](https://docs.google.com/document/d/1R5ymXR9j9KWXxl4_9Ug5ayz2Q5TtuGFOi0grzYWA0bA/view)._
 
@@ -90,7 +91,7 @@ To retrieve the necessary natural language text data for processing and analysis
 
 Our project protocols rely heavily on the Python programming language, therefore, we chose to use the Tweepy 4.11.0 ([Developer Documentation](https://docs.tweepy.org/en/stable/client.html#search-tweets)) Python library to authenticate and interact with Twitter’s interface endpoints. Through use of Python and Tweepy in a Jupyter Notebook with our project environment kernel, we were able to utilize the Search Tweets query parameter to select the most recent tweets (within the last 7 days) for the hashtags #uvalde and #guncontrol. The query also filtered for tweets that are not retweets, as well as only tweets in the English language. Tweepy’s Paginator was also used to perform pagination through Twitter’s API in order to select 10 tweets before selecting the next page and selecting another 10 tweets. This pagination was repeated until 100 tweets (50 tweets for each hashtag) were fetched and received in the API responses. Once the fetching process was complete, the tweets were aggregated in an array using a Python for loop. After containing the tweets in a list format, the tweets were combined into a Pandas dataframe and then exported as a CSV file for portability and further wrangling of the acquired dataset.
 
-The next phase for our project  a greater variety of tweets on our subject matter: sentiment about guns and gun control. Our results will also include more fields from the Search Tweets endpoint for additional features to the data including Tweet IDs, Tweet Metrics User IDs, Profile Geo-Data, and UTC Timestamps. We have currently acquired over 8,000 tweets with this feature set, from which we plan to annotate with sentiment classifications for our final model training phase. Since our project will focus on sentiment regarding gun control near and around the 2022 US midterm elections, we will also make use of the premium API 30-day search endpoint parameters to pull 10,000 tweets for each day for a range of dates around election day, November 8, 2022.
+The next phase for our project a greater variety of tweets on our subject matter: sentiment about guns and gun control. Our results will also include more fields from the Search Tweets endpoint for additional features to the data including Tweet IDs, Tweet Metrics User IDs, Profile Geo-Data, and UTC Timestamps. We have currently acquired over 8,000 tweets with this feature set, from which we plan to annotate with sentiment classifications for our final model training phase. Since our project will focus on sentiment regarding gun control near and around the 2022 US midterm elections, we will also make use of the premium API 30-day search endpoint parameters to pull 10,000 tweets for each day for a range of dates around election day, November 8, 2022.
 
 ### Data Annotation
 
@@ -129,7 +130,6 @@ Confirmation of Writes to Postgresql DB <br>
 <img src="res/images/users_geo_count.png" alt="writetable1" height="200"/>
 <img src="res/images/tweets_count.png" alt="writetable2" height="200"/>
 
-
 #### Data preprocessing
 
 Before training the model, we performed various pre-processing steps on the dataset. Firstly, we converted the text into the lowercase for better generalization and then we dealt with removing special characters, single character, multiple spaces.
@@ -138,19 +138,9 @@ Subsequently, we defined stopwords and stopwords were cleaned and removed thereb
 
 At last, we then performed Stemming(reducing the words to their derived stems) and Lemmatization(reducing the derived words to their root form known as lemma) for better results.
 
-### Proposed ML Models
+### Feature Selection
 
-We are using supervised learning for twitter sentiment analysis to classify tweets as pro-gun, anti-gun or neutral. Since, we have a small dataset of 1000 tweets (400 pro-gun, 400 anti-gun and 200 neutral), to overcome the problem of overfitting we are considering to use the following Machine Learning models:
-
-- Naive Bayes: These are a set of supervised learning algorithms based on applying Bayes’ theorem with the “naive” assumption of conditional independence between every pair of features given the value of the class variable. In Naive Bayes, probabilities are assigned to words or phrases, segregating them into different labels.
-
-- Support Vector Machine: An SVM model is basically a representation of different classes in a hyperplane in multidimensional space. The hyperplane will be generated in an iterative manner by SVM so that the error can be minimized. The goal of SVM is to divide the datasets into classes to find a maximum marginal hyperplane (MMH).
-
-- Random Forest: A random forest algorithm samples the data and builds several smaller, simpler decision trees. Each tree is simpler because it is built from a random subset of features. They are robust against overfitting.
-
-- Adaptive Boosting: The idea behind Adaptive Boosting, called AdaBoost, in which a model is trained then evaluated. After evaluating the errors of the first model, another model is trained. This time, however, the model gives extra weight to the errors from the previous model. The purpose of this weighting is to minimize similar errors in subsequent models. Then, the errors from the second model are given extra weight for the third model. This process is repeated until the error rate is minimized.
-
-- XGBoost
+After data-preprocessing, we performed tokenization, stemming and lemmatizer. For feature extraction we used CountVectorizer to convert a collection of text documents to a vector of token counts. It tokenizes the documents to build a vocabulary of the words present in the corpus and counts how often each word from the vocabulary is present in each and every document in the corpus. We also used the parameter ngram_range = (1,4) which tells the vectorizer to use four successive words along with each single word as features for the resulting vector representation.
 
 ### Training the Model(s)
 
@@ -160,9 +150,9 @@ We are using supervised machine learning which is based on labeled dataset and t
 
 We have a dataset of 300 tweets to test ML model.
 
-### ML model
+### Machine Learning Model
 
-With database of only 100 tweets, Balanced Random Forest Classifier performed the best with accuracy score of 57.9 %. But when we have a dataset of 1000 tweets, We want to try various Machine Learning models on the dataset ranging from simple ones to complex models and then try to find out the one which gives the best performance among them using Acuuracy score, confusion matrix.
+A single decision tree can learn quite complex functions. However, in many ways it can be prone to overfitting. To overcome this, we used Balanced Random forest classifier where we could create many decision trees and then ask each tree to predict the sentiment. Since our dataset is small, we used n_estimators = 130. Although, higher value takes longer time to run but it will lead to higher accuracy. The accuracy of ML model is: 63.25%
 
 <br><br><br>
 
@@ -183,12 +173,14 @@ With database of only 100 tweets, Balanced Random Forest Classifier performed th
 <br><br><br>
 
 ## Project Analysis
+
 The Project Analysis portion will include the following:
-* Predict tweet sentiment using ML
-* Overall tweet sentiment percentages around the 2022 Midterm Election
-* Sentiment percentages across US states
-* Sentiment percentages across CA counties
-* Overall Data/Project Analysis
+
+- Predict tweet sentiment using ML
+- Overall tweet sentiment percentages around the 2022 Midterm Election
+- Sentiment percentages across US states
+- Sentiment percentages across CA counties
+- Overall Data/Project Analysis
 
 ### Predict tweet sentiment using ML
 
@@ -207,7 +199,6 @@ The Project Analysis portion will include the following:
 <br>
 
 ### Overall Data/Project Analysis
-
 
 <br><br><br>
 
