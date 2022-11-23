@@ -130,29 +130,35 @@ Confirmation of Writes to Postgresql DB <br>
 <img src="res/images/users_geo_count.png" alt="writetable1" height="200"/>
 <img src="res/images/tweets_count.png" alt="writetable2" height="200"/>
 
-#### Data preprocessing
+### Data preprocessing
 
 Before training the model, we performed various pre-processing steps on the dataset. Firstly, we converted the text into the lowercase for better generalization and then we dealt with removing special characters, single character, multiple spaces.
 
 Subsequently, we defined stopwords and stopwords were cleaned and removed thereby reducing the unnecessary data from the tweets. After that, we also removed the URLs along with removing the numeric numbers from the words as they do not have any significant importance.
 
-At last, we then performed Stemming(reducing the words to their derived stems) and Lemmatization(reducing the derived words to their root form known as lemma) for better results.
-
 ### Feature Selection
 
-After data-preprocessing, we performed tokenization, stemming and lemmatizer. For feature extraction we used CountVectorizer to convert a collection of text documents to a vector of token counts. It tokenizes the documents to build a vocabulary of the words present in the corpus and counts how often each word from the vocabulary is present in each and every document in the corpus. We also used the parameter ngram_range = (1,4) which tells the vectorizer to use four successive words along with each single word as features for the resulting vector representation.
-
-### Training the Model(s)
-
-We are using supervised machine learning which is based on labeled dataset and thus the labels are provided to the model during the process. These labeled dataset are trained to get meaningful outputs when encountered during decision making. We will use 700 tweets to train ML model.
-
-### Testing the Model(s)
-
-We have a dataset of 300 tweets to test ML model.
+After preprocessing data, we performed tokenization, stemming and lemmatizer. For feature extraction we used CountVectorizer to convert a collection of text documents to a vector of token counts. It tokenizes the documents to build a vocabulary of the words present in the corpus and counts how often each word from the vocabulary is present in each and every document in the corpus. We also used the parameter ngram_range = (1,4) which tells the vectorizer to use four successive words along with each single word as features for the resulting vector representation.
 
 ### Machine Learning Model
 
-A single decision tree can learn quite complex functions. However, in many ways it can be prone to overfitting. To overcome this, we used Balanced Random forest classifier where we could create many decision trees and then ask each tree to predict the sentiment. Since our dataset is small, we used n_estimators = 130. Although, higher value takes longer time to run but it will lead to higher accuracy. The accuracy of ML model is: 63.25%
+After classifying training data of 1000 tweets, we ran the following machine learning models-
+
+- Balanced Random Forest Classifier
+- Bernoulli Naive Bayes
+- Multinomial Naive Bayes
+
+![F1-Score](<./res/images/classification_comparisons/ML%20F1-Score%20Comparison%20(Initial%20Dataset).png>)
+![Precision](<./res/images/classification_comparisons/ML%20Precision%20Comparison%20(Initial%20Dataset).png>)
+
+We got low precision and F1 score for neutrals as classifying neutrals is subjective, so we decided to set new strict rules for neutrals and updated the dataset for training with new classfied neutrals.
+
+The following images show the F1 score and Precision with new training dataset:
+
+![F1-Score](<./res/images/classification_comparisons/ML%20F1-Score%20Comparison%20(Neutral_Updated%20Dataset).png>)
+![Precision](<./res/images/classification_comparisons/ML%20Precision%20Comparison%20(Neutral_Updated%20Dataset).png>)
+
+After updating dataset with new defination of neutrals, precision for neutrals improved but at the cost of decreased precision for anti-gun and pro-gun. For this project our main focus was to classify tweet sentiment as anti-gun and pro-gun so we decided to go with Balanced Random Forest classifier with initial dataset for training which gave better precision for pro-gun and anti-gun.
 
 <br><br><br>
 
