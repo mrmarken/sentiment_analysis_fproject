@@ -160,6 +160,9 @@ The following images show the F1 score and Precision with new training dataset:
 
 After updating dataset with new defination of neutrals, precision for neutrals improved but at the cost of decreased precision for anti-gun and pro-gun. For this project our main focus was to classify tweet sentiment as anti-gun and pro-gun so we decided to go with Balanced Random Forest classifier with initial dataset for training which gave better precision for pro-gun and anti-gun.
 
+The classification report and accuracy for Balanced Random Forest Classifier:
+![Accuracy Score](./res/images/accuracy_Score.png)
+
 <br><br><br>
 
 ## Results
