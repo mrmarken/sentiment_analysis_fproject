@@ -32,7 +32,7 @@ David Martinez<br>
 
 Keerti Chaudhary<br>
 [LinkedIn](https://www.linkedin.com/in/keerti-chaudhary/)<br>
-[github]()
+[github](https://github.com/17keerti)
 
 Kevin Eapen<br>
 [LinkedIn](https://linkedin.com/in/kevin-eapen)<br>
@@ -100,6 +100,9 @@ The following documentation is as part of this project:
 
 - [Group 6 Final Project Proposal](https://docs.google.com/document/d/1S8YDuH4BK8O7xqQIlRqUP676FcTqAoM3K-G383fwP4o/view)
 - [Final Project Process Overview](https://docs.google.com/document/d/1R5ymXR9j9KWXxl4_9Ug5ayz2Q5TtuGFOi0grzYWA0bA/view)
+- [Final Project Sync Notes](https://docs.google.com/document/d/1iTBQPR0OlELasVzcAgVBxvX7SSCtxc45m7_skaS3vUk/edit?usp=sharing)
+- [Sentiment Escalation Document](https://docs.google.com/spreadsheets/d/13RjYV8dsDT5S_7FYCZnv0HFMDhcJ1tWlg64CPmpNRaQ/edit?usp=sharing)
+
 
 <br>
 
@@ -267,44 +270,66 @@ The team was also able to obtain the top mentions for hashtags and @(individuals
 
 <br>
 
-![@mention Results](<./res/images/dashboard_%26_viz/05_number_of_hashtag_mentions>)
+![@mention Results](<./res/images/dashboard_%26_viz/05_number_of_hashtag_mentions.png>)
 
 <br><br><br>
 
 ## Project Analysis
 
 ### Predict tweet sentiment using ML
-
+After conducting the machine learning process on all 70,000+ tweets, we loaded our data into Postgres via SQLAlchemy connection. It was at this point, that we were able to analyze our results in Tableau. 
 <br>
 
-### Overall tweet sentiment percentages around the 2022 Midterm Election
+### Overall Tweet Sentiment Around the 2022 Midterm Election
+In the line graph below, we illustrate how much anti-gun and pro-gun sentiment varied in the days before, the days prior, and the day of the election November 8th. November 8th being the highest volume of tweets for both types of sentiment. 
 
+![US Results](<./res/images/line_graph_overall.png>) 
+
+### Trends:
+- An unanticipated trend in the data shows a stark downward slope in anti-gun sentiment only a few days after the election, while pro-gun sentiment took longer to subside. 
+- There seems to have been a peak in sentiment on November 3rd, which is likely correlated to another recent event of the Parkland school shooter Nickolas Cruz was sentenced to life without parole for the massacre of 17 people in 2018. 
 <br>
 
-### Sentiment percentages across US states
+### Sentiment Across US States
+During this analyzing phase, we reviewed how many different states reacted during this time period amidst political conversations and ongoing shootings across the country. In the example below we see the California sentiment is similar to the US overall.
 
+![US Results](<./res/images/line_graph_california.png>)
 <br>
 
-### Sentiment percentages across CA counties
+In juxtoposition to California, a state like Missouri where sentiment was much more unpredicatable and volatile. The event of the Parkland shooter being sentenced to prison garned more tweets that even the day of the election with a large percentage of pro-gun sentiment. 
 
+![Missouri Results](<./res/images/line_graph_missouri.png>)
+
+### Sentiment Across CA Counties
+Below is a graph of Orange County, CA this county is prodominantly right-leaning. This is echoed in the graph as quanities of pro-gun sentiment and anti-gun snetiment are in competition.
+
+![Orange County Results](<./res/images/line_graph_orange_county.png>)
 <br>
+Below is a graph of Alamenda County, CA this county is prodominately left-leaning. This is echoed in the graph as pro-gun sentiment is very low. 
 
-### Overall Data/Project Analysis
+![Alameda County Results](<./res/images/line_graph_alameda_county.png>)
 
-<br><br><br>
+### Overall Conclusion
+
+Overall this project revealed many naunces about aquiring data, pre-processing data, classifying data, storing data, conducting machine learning models, and implementing visualizations. The results of the machine learning algorithm showed us many new insight about how people feel about gun control and gun rights in the US. In this review I have only showed a few states and counties, please feel free to go to our deployed Dashboard site to learn more about Gun Sentiment during the 2022 Midterm Election. 
+
+[Dashboard Link](https://public.tableau.com/app/profile/dana.o.burton/viz/Sentiment_Analysis_Tableau_Workbook/Dashboard1)<br>
+
 
 ## Summary & Recommendations
 
-After navigating through this project, using ML model to predcit tweet sentiment analysis, the team learned a few items:
+After navigating through this project, using ML model to predict tweet sentiment analysis, the team learned a few items:
 
 1. More data rows are needed to train the model
-   - This would be at least 5,000 tweets to allow for more anti-gun, pro-gun and neutral sentiment
+   - This would be at least 5,000 tweets to allow for more anti-gun, pro-gun and neutral sentiment.
 2. Additional aligmnent on the manual classification 
-   - This should help us in better training the model
+   - This should help us in better training the model.
+3. Create a system for tagging sarcasm and rerun the model with and without sarcastic tweets
+    - We would like to know if precision and F1-scores can be improved by providing the model with less ambigious sentiment. 
 3. Use more days as training data
-   - Some tweets repeated in a single day
+   - Some tweets repeated in a single day.
 4. Obtain more data
-   - This should provide more geo-location data points for our analysis
+   - This should provide more geo-location data points for our analysis.
 5. Gather additional gun-violence statistics
-   - We hope this will allow us to make correlations on gun-laws with regards to gun-violence on a state-by-state (or county-by-county) basis
+   - We hope this will allow us to make correlations on gun-laws with regards to gun-violence on a state-by-state (or county-by-county) basis.
    
