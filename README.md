@@ -1,8 +1,14 @@
-# **Final Project: Twitter Sentiment Analysis**
+<font color='0E2AEE'>
+    
+# **<center><u>Final Project: Twitter Sentiment Analysis</u></center>**
 
-<br><br>
+</font>
 
-## Project Overview
+<br>
+
+## <u>Project Overview</u>
+
+<br>
 
 ### Executive Summary
 
@@ -11,10 +17,26 @@ The team initially conducted a few team sessions to align on classification crit
 
 The data results will be discussed in the "Results" section. A summary section will contain the teams' findings, reporting, considerations and any recommendations for future studies.
 
-_For more information please follow [this link to our Presentation](https://docs.google.com/presentation/d/17xTJZuJfjp9j-S1KO1LkmC7HXK9N8dtZxxIwg6lGEYU/edit?usp=sharing)._
+_For more details please follow [this link to our Presentation](https://docs.google.com/presentation/d/1TRPxj6cEf4k-Avy5Alyz2rMj5ESAWoMiApBG1nt9WuY/view)._
+
+<br>
 
 ### Meet the Team
-[insert team members with contact info/linkedin urls]
+Dana Burton<br>
+[LinkedIn](https://www.linkedin.com/in/dana-burton-942767179/)<br>
+[github](https://github.com/Danaburtono)
+
+David Martinez<br>
+[LinkedIn](https://www.linkedin.com/in/dana-burton-942767179/)<br>
+[github](https://github.com/mrmarken)
+
+Keerti Chaudhary<br>
+[LinkedIn](https://www.linkedin.com/in/keerti-chaudhary/)<br>
+[github]()
+
+Kevin Eapen<br>
+[LinkedIn](https://linkedin.com/in/kevin-eapen)<br>
+[github](https://github.com/kevin-eapen)
 
 
 <br>
@@ -64,7 +86,9 @@ Once the ML model is trained to an acceptable accuracy range, the analysis shoul
 
 <br><br><br>
 
-## Methodology
+## <u>Methodology</u>
+
+<br>
 
 The following section contains details about the project and how the team derived results from the analysis.
 
@@ -72,7 +96,7 @@ The following section contains details about the project and how the team derive
 
 ### Documentation
 
-The following documentation is captured as part of this repository:
+The following documentation is as part of this project:
 
 - [Group 6 Final Project Proposal](https://docs.google.com/document/d/1S8YDuH4BK8O7xqQIlRqUP676FcTqAoM3K-G383fwP4o/view)
 - [Final Project Process Overview](https://docs.google.com/document/d/1R5ymXR9j9KWXxl4_9Ug5ayz2Q5TtuGFOi0grzYWA0bA/view)
@@ -100,15 +124,17 @@ The next phase for our project focuses on a greater variety of tweets on our sub
 
 Since our project focuses on sentiment regarding guns and gun control near and around the 2022 US midterm elections, we utilized the 30-day Search Tweets endpoint to pull between 4,000 to 10,000 tweets for each day (number of tweets per day resulted varies based on twitter activity) for a range of 5 days before, 5 days after, and the day of the election, November 8, 2022, as the midpoint. In total, over 72,000 tweets were pulled from an 11-day span. This big dataset of tweets included the same feature set as the above training dataset (without sentiment annotations). 
 
+<br>
+
 ### Data Annotation
 
 #### Training the Trainers
 
 At the prototyping phase, 2 team members were assigned a set of 50 tweets that were extracted through the Twitter API v2 which contained one of two hashtags: #uvalde or #guncontrol.
 In total, 100 tweets were used (50 per each 2 team members) to classify the dataset.
-After each member submitted their respective sentiment classification, the results were combined into one single csv file. This file was further processed using pandas DataFrames to create a new column identifying conflicts in classification. Using this file, the team held several meetings to ensure alignment on the methodology for classifying tweet sentiment. During this review, we still ended with 6% of tweets that we could not fully agree on classification. After iteratively, reviewing tweet classifications in more depth we settled on a standard grading rubric for the classification of the training data for predictive modeling.
+After each member submitted their respective sentiment classification, the results were combined into one single csv file. This file was further processed using pandas DataFrames to create a new column identifying conflicts in classification. Using this file, the team held several meetings to ensure alignment on the methodology for classifying tweet sentiment. During this review, we still ended with 6% of tweets that we could not fully agree on classification. After iteratively reviewing tweet classifications in more depth we settled on a standard grading rubric for the classification of the training data for predictive modeling.
 
-The goal for our final training data will be to have 1000 rows of classified tweets. The team decided to use the following classifications and percentages to train the ML models and decide which model provides the best accuracy:
+The goal for our final training data was to have 1,000 rows of classified tweets. The team decided to use the following classifications and percentages to train the ML models and decide which model provides the best accuracy:
 
 - Pro-gun - 40%
 - Anti-gun - 40%
@@ -119,6 +145,8 @@ Out of the over 8,000 tweets fetched for our pool of training data, we were able
 Final Data Annotation Rubric
 ![Final Rubric](res/images/grading_rubric.png)
 
+<br>
+
 ### Data Transformations and Loading Database
 
 #### Training Data
@@ -128,7 +156,7 @@ The data was also stored in both raw JSON format and parsed, tabular CSV format 
 
 Two tables were loaded into the database using Spark and a Postgresql driver. One table (tweets) contained the tweets text data, along with other metrics, and sentiment classifcation, while the other table (users_geo) contained the user location data. The tables are linked by the user IDs. Once loaded into the database, the data tables were also joined in SQL as 'tweets_user_geo_joined'.
 
-Training Data Database ERD <br>
+Training Data - Database ERD <br>
 <img src="res/images/database/ERDv2.png" alt="erd" height="300"/>
 
 Confirmation of Loading Training Dataset to Postgresql DB <br>
@@ -138,6 +166,7 @@ Confirmation of Loading Training Dataset to Postgresql DB <br>
 AWS-RDS Instance <br>
 <img src="res/images/database/AWS-RDS-DB.png" alt="rds" height="100"/>
 
+<br>
 
 #### Big Data: 70K+ Tweets Around 2022 US Midterms Election Day
 
@@ -156,6 +185,7 @@ Final Elections Gun Sentiment Tweets Database (First 10 rows) <br>
 Confirmation of Loading Final Big Dataset to Postgresql DB <br>
 ![big_count](res/images/database/big_dataset_db_count.png)
 
+<br>
 
 ### Data Preprocessing
 
@@ -163,11 +193,15 @@ Before training the model, we performed various pre-processing steps on the data
 
 Subsequently, we defined stopwords and stopwords were cleaned and removed thereby reducing the unnecessary data from the tweets. After that, we also removed the URLs along with removing the numeric numbers from the words as they do not have any significant importance.
 
+<br>
+
 ### Feature Selection
 
 After preprocessing data, we performed tokenization, stemming and lemmatizer. For feature extraction we used CountVectorizer to convert a collection of text documents to a vector of token counts. It tokenizes the documents to build a vocabulary of the words present in the corpus and counts how often each word from the vocabulary is present in each and every document in the corpus. We also used the parameter ngram_range = (1,4) which tells the vectorizer to use four successive words along with each single word as features for the resulting vector representation.
 
-### Machine Learning Model
+<br><br>
+
+## Machine Learning Model
 
 After classifying training data of 1000 tweets, we ran the following machine learning models-
 
@@ -187,36 +221,57 @@ The following images show the F1 score and Precision with new training dataset:
 
 After updating dataset with new defination of neutrals, precision for neutrals improved but at the cost of decreased precision for anti-gun and pro-gun. For this project our main focus was to classify tweet sentiment as anti-gun and pro-gun so we decided to go with Balanced Random Forest classifier with initial dataset for training which gave better precision for pro-gun and anti-gun.
 
-The classification report and accuracy for Balanced Random Forest Classifier:
-![Accuracy Score](./res/images/accuracy_Score.png)
-
 <br><br><br>
 
 ## Results
 
-### Results1
+### ML Accuracy and Precision
+During our analysis, the team discovered that the ML model would be able to identify anti-gun and pro-gun sentiment with a precision of ~74% and an accuracy of ~63%.
 
-### Results2
+The classification report and accuracy for Balanced Random Forest Classifier:
+![Accuracy Score](./res/images/accuracy_Score.png)
 
-### Results3
+<br>
 
-### Results4
+**The following sections provide an overview of the results:**
 
-### Results5
+### Twitter Classification
 
-### Results Summary & Recommendations
+#### Overall Results
+The team used the >70K tweets with our identified Machine Learning model and obtained the following results:
+<br>
+![Overall Results](<./res/images/dashboard_%26_viz/01_sentiment_totals.png>)
+
+<br><br>
+
+#### State and County Results
+
+Similarly, the data yielded the following breakdowns per state and per county (as available):
+
+<br>
+
+![State Results](<./res/images/dashboard_%26_viz/02_sentiment_per_state.png>)
+
+<br>
+
+![County Results](<./res/images/dashboard_%26_viz/03_sentiment_per_county.png>)
+
+
+<br><br>
+
+#### Hashtags and @ Mentions Results
+The team was also able to obtain the top mentions for hashtags and @(individuals) mentions:
+<br>
+
+![@mention Results](<./res/images/dashboard_%26_viz/04_number_of_mentions.png>)
+
+<br>
+
+![@mention Results](<./res/images/dashboard_%26_viz/05_number_of_hashtag_mentions>)
 
 <br><br><br>
 
 ## Project Analysis
-
-The Project Analysis portion will include the following:
-
-- Predict tweet sentiment using ML
-- Overall tweet sentiment percentages around the 2022 Midterm Election
-- Sentiment percentages across US states
-- Sentiment percentages across CA counties
-- Overall Data/Project Analysis
 
 ### Predict tweet sentiment using ML
 
@@ -238,10 +293,18 @@ The Project Analysis portion will include the following:
 
 <br><br><br>
 
-## Appendix
+## Summary & Recommendations
 
-Templates:
+After navigating through this project, using ML model to predcit tweet sentiment analysis, the team learned a few items:
 
-|     ![Figure1]()      |
-| :-------------------: |
-| **Figure 1.** Example |
+1. More data rows are needed to train the model
+   - This would be at least 5,000 tweets to allow for more anti-gun, pro-gun and neutral sentiment
+2. Additional aligmnent on the manual classification 
+   - This should help us in better training the model
+3. Use more days as training data
+   - Some tweets repeated in a single day
+4. Obtain more data
+   - This should provide more geo-location data points for our analysis
+5. Gather additional gun-violence statistics
+   - We hope this will allow us to make correlations on gun-laws with regards to gun-violence on a state-by-state (or county-by-county) basis
+   
